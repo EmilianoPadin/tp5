@@ -1,0 +1,141 @@
+import random
+
+def adivinar_numero():
+    numero_random = random.randint(1, 100)
+
+    print("Trate de adivinar un numero que elegi entre el 1 y el 100")
+
+    while True:
+        intento = int(input("Y tu numero es: "))
+
+        if intento < numero_random:
+            print("Demasiado bajo. Pruebe de nuevo.")
+        elif intento > numero_random:
+            print("Demasiado alto. Pruebe de nuevo.")
+        else:
+            print("Adivinaste el numero. BUEN TRABAJO!!!! .")
+            break
+adivinar_numero()
+
+import random
+
+def jugar_piedra_papel_tijeras():
+    opciones = ["piedra", "papel", "tijeras"]
+    computadora = random.choice(opciones)
+
+    usuario = input("Piedra, Papel o Tijeras: ")
+
+    if usuario not in opciones:
+        print("Por favor, elija una de las tres opciones correctas")
+        return
+    
+    print(f"Tu elegiste: {usuario}")
+    print(f"Y la computadora: {computadora}")
+
+    if usuario == computadora:
+        print("Empataste")
+    elif (usuario == "piedra" and computadora == "tijeras") or \
+         (usuario == "papel" and computadora == "piedra") or \
+         (usuario == "tijeras" and computadora == "papel"):
+        print("Has ganado")
+    else:
+        print("Has perdido")
+
+jugar_piedra_papel_tijeras()
+
+def calculadora():
+    num1 = float(input("Introduzca el primer número: "))
+    num2 = float(input("Introduzca el segundo número: "))
+    operacion = input("Elija el tipo de operacion (+, -, *, /): ")
+
+    if operacion == '+':
+        resultado = num1 + num2
+    elif operacion == '-':
+        resultado = num1 - num2
+    elif operacion == '*':
+        resultado = num1 * num2
+    elif operacion == '/':
+        if num2 != 0:
+            resultado = num1 / num2
+        else:
+            print("No se puede dividir por cero.")
+            return
+    else:
+        print("Error.No es valido.")
+        return
+
+    print(f"El resultado de {num1} {operacion} {num2} es {resultado}")
+
+calculadora()
+
+def contar_info_archivo(nombre_archivo):
+    try:
+        with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
+            contenido = archivo.read()
+            palabras = contenido.split()
+            lineas = contenido.splitlines()
+            caracteres = len(contenido)
+
+        num_palabras = len(palabras)
+        num_lineas = len(lineas)
+        num_caracteres = caracteres
+
+        print(f"Archivo: {nombre_archivo}")
+        print(f"Número de palabras: {num_palabras}")
+        print(f"Número de líneas: {num_lineas}")
+        print(f"Número de caracteres: {num_caracteres}")
+
+    except:
+        print(f"Error al intentar leer el archivo: {nombre_archivo}")
+
+contar_info_archivo()
+
+import time
+
+def cronometro():
+    inicio_tiempo = None
+    tiempo_pausado = 0
+    en_pausa = True
+
+    while True:
+        print("\nOpciones:")
+        print("1. Iniciar cronómetro")
+        print("2. Detener cronómetro")
+        print("3. Reiniciar cronómetro")
+        print("4. Salir")
+
+        opcion = input("Selecciona una opción (1/2/3/4): ")
+
+        if opcion == '1':
+            if en_pausa:
+                inicio_tiempo = time.time() - tiempo_pausado
+                en_pausa = False
+                print("Cronómetro iniciado.")
+            else:
+                print("El cronómetro ya está en marcha.")
+        elif opcion == '2':
+            if not en_pausa:
+                tiempo_pausado = time.time() - inicio_tiempo
+                en_pausa = True
+                print("Cronómetro detenido.")
+            else:
+                print("El cronómetro ya está detenido.")
+        elif opcion == '3':
+            inicio_tiempo = time.time()
+            tiempo_pausado = 0
+            en_pausa = False
+            print("Cronómetro reiniciado.")
+        elif opcion == '4':
+            print("Saliendo del cronómetro.")
+            break
+        else:
+            print("Opción no válida. Por favor, selecciona una opción válida.")
+
+        if not en_pausa:
+            tiempo_transcurrido = time.time() - inicio_tiempo
+        else:
+            tiempo_transcurrido = tiempo_pausado
+
+        print(f"Tiempo transcurrido: {tiempo_transcurrido:.2f} segundos")
+
+    cronometro()

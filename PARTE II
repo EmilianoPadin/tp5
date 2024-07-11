@@ -1,0 +1,4 @@
+echo "Ingrese su nombre"
+read nombre
+echo "A ver si lo adivinoo.."
+echo "Tu posible edad es :curl -s o https://api.genderize.io/?name=nombre.!"
